@@ -1,0 +1,238 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fonte e base */
+html, body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #4CAF50;
+  color: #333;
+}
+
+body {
+  padding-top: 64px;
+}
+
+/* Header / Navegação */
+.navegacao {
+  background-color: #4CAF50;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-inner-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 40px;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.pet { color: #007106; }
+.amigo {
+  color: #ffffff;
+  text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+nav a {
+  font-weight: 600;
+  text-decoration: none;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+nav a:hover {
+  color: #d8ffd6;
+  transform: scale(1.06);
+}
+
+/* Hero (index) */
+header {
+  background: #ffffff;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-bottom-side {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header-bottom-side-left {
+  flex: 1 1 480px;
+  max-width: 700px;
+}
+
+.header-bottom-side-left h2 {
+  font-size: 40px;
+  color: #2E7D32;
+  line-height: 1.2;
+}
+
+.header-bottom-side-left p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  margin: 16px 0 20px;
+}
+
+.header-bottom-side-right {
+  flex: 1 1 360px;
+  max-width: 520px;
+}
+
+.header-bottom-side-right img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Botão padrão */
+.btn {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #2E7D32;
+  transform: translateY(-1px);
+}
+
+/* Seção Destaques (index) */
+.destaques {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px 20px;
+  text-align: center;
+}
+
+.destaques h2 {
+  font-size: 32px;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 16px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.card h3 { font-size: 20px; color: #2E7D32; margin-bottom: 6px; }
+.card p { font-size: 14px; color: #555; margin-bottom: 8px; }
+.price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2E7D32;
+}
+
+.price {
+  font-size: 1.1rem;
+  margin: 8px 0;
+}
+
+.price .old-price{
+  text-decoration: line-through;
+  color: #ff0000;
+  margin-right: 8px;
+  font-size: 0.9rem;
+}
+
+.price .new-price {
+  color: #4CAF50;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Footer */
+.site-footer {
+  background-color: #ffffff;
+  color: #4CAF50;
+  padding: 14px 0;
+  text-align: center;
+  font-size: 16px;
+}
+
+.site-footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+strong { color: #2E7D32; }
+
+@media (max-width: 900px) {
+  .logo { font-size: 32px; }
+  nav ul { gap: 16px; }
+  .header-bottom-side {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .header-bottom-side-left, .header-bottom-side-right {
+    max-width: 100%;
+  }
+}

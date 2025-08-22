@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Produtos - PetShop Melhor Amigo</title>
+  <link rel="stylesheet" href="../src/style.css">
+  <link rel="stylesheet" href="../src/produtos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Ícone carrinho -->
+  <div id="cart-icon">🛒</div>
+
+  <!-- Carrinho -->
+  <div id="cart">
+    <header>
+      <span>Meu Carrinho</span>
+      <button id="close-cart" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;">✖</button>
+    </header>
+    <div id="cart-items"></div>
+    <footer>
+      <div id="cart-total">Total: R$ 0,00</div>
+      <button id="checkout-btn">Finalizar Compra</button>
+    </footer>
+  </div>
+
+  <!-- Navegação -->
+  <div class="navegacao">
+    <div class="header-inner-content show-menu">
+      <h2 class="logo"><span class="pet">PET</span><span class="amigo">SHOP</span></h2>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Início</a></li>
+          <li><a href="galeria.html">Galeria</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Lista de produtos -->
+  <main class="destaques">
+    <h2>Nossos Serviços e Produtos</h2>
+
+    <!-- Pesquisa -->
+    <div class="search-box">
+      <input type="text" id="search" placeholder="Pesquisar produto...">
+    </div>
+
+    <div class="cards" id="product-list"></div>
+  </main>
+
+  <!-- Toast de sucesso -->
+  <div id="success-toast">Compra realizada com sucesso! 💚</div>
+
+  <!-- Modal de pagamento -->
+  <div id="payment-modal">
+    <div class="modal-content">
+      <h2>Escolha a forma de pagamento</h2>
+      <div class="payment-options">
+        <button class="payment-option" data-method="Pix">Pix</button>
+        <button class="payment-option" data-method="Cartão de Crédito">Cartão de Crédito</button>
+        <button class="payment-option" data-method="Cartão de Débito">Cartão de Débito</button>
+      </div>
+      <div id="payment-error"></div>
+      <button class="close-btn" id="close-payment-modal">Cancelar</button>
+    </div>
+  </div>
+
+<script>
+  const cartIcon = document.getElementById("cart-icon");
+  const cart = document.getElementById("cart");
+  const closeCart = document.getElementById("close-cart");
+  const cartItemsEl = document.getElementById("cart-items");
+  const cartTotalEl = document.getElementById("cart-total");
+  const checkoutBtn = document.getElementById("checkout-btn");
+  const productList = document.getElementById("product-list");
+  const searchInput = document.getElementById("search");
+  const paymentModal = document.getElementById("payment-modal");
+  const closePaymentModal = document.getElementById("close-payment-modal");
+  const successToast = document.getElementById("success-toast");
+
+  const products = [
+      { name: "Serviços De Tosa", description: "Temos os nossos serviços de tosa da mais pura qualidade para seu pet.", price: 79.99, img: "../img/prod/tosa.webp" },
+      { name: "Serviços De Banho", description: "Temos os nossos serviços de banho da mais pura qualidade para seu pet.", price: 69.99, img: "../img/prod/banho.webp" },
+      { name: "Serviços De Injeção", description: "Temos os nossos serviços de aplicação de injeção contra pulgas carrapatos.", price: 39.99, img: "../img/prod/carrapato.jpg" },
+      { name: "Serviço De Adestramento", description: "Temos o nosso serviço de adestramento, o melhor da região para o seu dog.", price: 119.99, img: "../img/prod/adestrar.png" },
+      { name: "Cama", description: "Compre a melhor caminha para o seu pet.", price: 79.99, img: "../img/prod/cama.webp" },
+      { name: "Osso De Borracha", description: "Osso de borracha para seu dog morder e livrar suas sandalias.", price: 14.99, img: "../img/prod/osso.jpg" },
+      { name: "Comedouro", description: "Comedouro de plástico para o seu pep se alimentar.", price: 15.99, img: "../img/prod/comedouro.jpg" },
+      { name: "Caixa De Transporte ", description: "Caixa de transporte para seu pet ir seguro a qualquer lugar.", price: 99.99, img: "../img/prod/caixa.jpg" },
+      { name: "Shampoo 5L", description: "Maior e dura bem mais para seu pet.", price: 29.99, img: "../img/prod/shampoo_5l.webp" },
+      { name: "Bebedouro", description: "Bebedouro para seu pet se hidratar.", price: 49.99, img: "../img/prod/bebedouro.jpg" },
+      { name: "Coleira Reforçada", description: "Coleira reforçada para seu pet que sempre escapa.", price: 14.99, img: "../img/prod/coleira_reforçada.webp" },
+      { name: "Coleira Peitoral", description: "Coleira peitoral para seu pet ficar mais relaxado.", price: 29.99, img: "../img/prod/coleira_peitoral.webp" },
+      { name: "Coleira De Couro", description: "Coleira rustica de couro para seu pet.", price: 9.99, img: "../img/prod/coleira_couro.webp" },
+      { name: "Balde Alimentador", description: "Balde alimentador para seus pintinhos comer e se hidratar.", price: 79.99, img: "../img/prod/balde_alimentador.webp" },
+      { name: "Bomba De Áquario", description: "Bomba de áquario para seu peixinho ter mais oxigênio.", price: 109.99, img: "../img/prod/bomba.jpg" },
+      { name: "Alimentador De Cavalo", description: "Esse é um alimentador para seu cavalo que está doente.", price: 59.99, img: "../img/prod/alimentacao.jpg" },
+      { name: "Aquario para peixe", description: "Aquario de tamanho 60x35. Muito bom para seu peixe", price: 119.99, img: "../img/prod/aquario.jpg" },
+      { name: "Ração Mini Betta", description: "Essa é uma ração de qualidade para sua beta .", price: 29.99, img: "../img/prod/beta.webp" },
+      { name: "Gaiola para Hamster", description: "Gaiola muito boa e educativa para o seu hamster.", price: 99.99, img: "../img/prod/ramster.jpg" },
+      { name: "Ração Gold Mix", description: "Essa é a melhor ração para a sua calopsita.", price: 29.99, img: "../img/prod/calop.webp" },
+      { name: "Cela", description: "Compre aqui a sua cela para andar confortavel a cavalo.", price: 249.99, img: "../img/prod/cela.jpg" },
+      { name: "Ração Equilíbrio", description: "A melhor ração para seu cavalo.", price: 79.99, img: "../img/prod/cavalo.jpg" },
+      { name: "Ração Dog Chow", description: "A melhor e de pura qualidade ração para seu dog.", price: 79.99, img: "../img/prod/dogshow.webp" },
+      { name: "Ração Pedigree Filhote", description: "A melhor ração para seu dog filhote.", price: 89.99, img: "../img/prod/filhote.webp" },
+      { name: "Ração Golden Special", description: "A melhor e de pura qualidade ração para seu gato.", price: 79.99, img: "../img/prod/golden.webp" },
+      { name: "Ração Kinguio", description: "A melhor ração para seu kinguio.", price: 29.99, img: "../img/prod/kinguio.webp" },
+      { name: "Ração Nutrópica", description: "A melhor ração para seu papagaio.", price: 29.99, img: "../img/prod/papagaio.webp" },
+      { name: "Ração Gold Mix", description: "A melhor ração para seu piriquito.", price: 29.99, img: "../img/prod/periquito.webp" },
+      { name: "Ração Whiskas", description: "A melhor ração para seu gatinho.", price: 79.99, img: "../img/prod/whiskas.webp" },
+      { name: "Saco De Milho", description: "50kg de milho para suas galinhas se alimentarem bem.", price: 149.99, img: "../img/prod/milho.avif" },
+      { name: "Saco De Farelo De Trigo", description: "Farelo de trigo para misturar para sua vaca.", price: 119.99, img: "../img/prod/farelo.webp" },
+      { name: "Ração Criação Nobre", description: "A melhor e de pura qualidade ração para suas galinhas", price: 59.99, img: "../img/prod/galinha.png" },
+  ];
+
+  let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cartData));
+  }
+
+  function updateCartDisplay() {
+    cartItemsEl.innerHTML = "";
+    let total = 0;
+    cartData.forEach((item, index) => {
+      total += item.price * item.qty;
+      cartItemsEl.innerHTML += `
+        <div class="cart-item">
+          <img src="${item.img}" alt="${item.name}" />
+          <div class="cart-item-info">
+            <h4>${item.name}</h4>
+            <p>R$ ${item.price.toFixed(2)}</p>
+            <div class="cart-item-qty">
+              <button onclick="changeQty(${index}, -1)">-</button>
+              ${item.qty}
+              <button onclick="changeQty(${index}, 1)">+</button>
+              <button onclick="removeItem(${index})" style="background:red;border-radius:6px;">🗑</button>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    cartTotalEl.textContent = `Total: R$ ${total.toFixed(2)}`;
+  }
+
+  function changeQty(index, change) {
+    cartData[index].qty += change;
+    if (cartData[index].qty <= 0) {
+      cartData.splice(index, 1);
+    }
+    saveCart();
+    updateCartDisplay();
+  }
+
+  function removeItem(index) {
+    cartData.splice(index, 1);
+    saveCart();
+    updateCartDisplay();
+  }
+
+  function renderProducts(filteredProducts) {
+    productList.innerHTML = "";
+    filteredProducts.forEach(product => {
+      const productCard = `
+        <div class="card">
+          <img src="${product.img}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <p>${product.description}</p>
+          <p><strong>R$ ${product.price.toFixed(2)}</strong></p>
+          <button class="btn add-to-cart" 
+                  data-name="${product.name}" 
+                  data-price="${product.price}" 
+                  data-img="${product.img}">Adicionar ao carrinho</button>
+        </div>
+      `;
+      productList.innerHTML += productCard;
+    });
+  }
+
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    const filteredProducts = products.filter(product =>
+      (product.name || "").toLowerCase().includes(query) || product.description.toLowerCase().includes(query)
+    );
+    renderProducts(filteredProducts);
+  });
+
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("add-to-cart")) {
+      const btn = e.target;
+      const name = btn.dataset.name || "Produto";
+      const price = parseFloat(btn.dataset.price) || 0;
+      let img = btn.dataset.img || "";
+
+
+      const existing = cartData.find((item) => item.name === name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cartData.push({ name, price, img, qty: 1 });
+      }
+      saveCart();
+      updateCartDisplay();
+
+      cart.classList.add("open");
+      cartIcon.style.display = "none";
+    }
+  });
+
+  cartIcon.addEventListener("click", () => {
+    cart.classList.add("open");
+    cartIcon.style.display = "none";
+    updateCartDisplay();
+  });
+
+  closeCart.addEventListener("click", () => {
+    cart.classList.remove("open");
+    cartIcon.style.display = "block";
+  });
+
+  checkoutBtn.addEventListener("click", () => {
+    if (cartData.length === 0) {
+      alert("⚠️ Você precisa adicionar pelo menos um item ao carrinho antes de finalizar a compra.");
+      return;
+    }
+    paymentModal.style.display = "flex";
+  });
+
+  closePaymentModal.addEventListener("click", () => {
+    paymentModal.style.display = "none";
+  });
+
+  document.querySelectorAll(".payment-option").forEach(button => {
+    button.addEventListener("click", () => {
+      paymentModal.style.display = "none";
+      showSuccessToast();
+      cartData = [];
+      saveCart();
+      updateCartDisplay();
+      cart.classList.remove("open");
+      cartIcon.style.display = "block";
+    });
+  });
+
+  function showSuccessToast() {
+    successToast.style.display = 'block';
+    setTimeout(() => { successToast.style.opacity = 1; }, 10);
+    setTimeout(() => { successToast.style.opacity = 0; }, 1500);
+    setTimeout(() => { successToast.style.display = 'none'; }, 2000);
+  }
+
+  renderProducts(products);
+  updateCartDisplay();
+  window.onload = () => {
+    paymentModal.style.display = "none";
+    cartIcon.style.display = "block";
+  };
+</script>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>&copy; 2025 Petshop Melhor Amigo. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Poppins', sans-serif; background: #4CAF50; }
+
+.contato-container {
+  max-width: 640px;
+  margin: 100px auto 40px;
+  background-color: #fff;
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.contato-container h2 {
+  color: #4CAF50;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+}
+
+form button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 700;
+}
+
+form button:hover { background-color: #2E7D32; }
+
+.info-contato {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.mensagem-sucesso {
+  display: none;
+  background: white;
+  color: #4CAF50;
+  padding: 14px 20px;
+  border-radius: 12px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+input.erro, textarea.erro {
+  border: 2px solid red;
+}
+
+small.erro-msg {
+  color: red;
+  font-size: 12px;
+  margin-top: -5px;
+  display: none; 
+}
+    
+.checkbox-label { display: flex; align-items: center; gap: 8px; }
+.checkbox-label input { margin: 0; }
+.checkbox-label span { flex-grow: 1; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

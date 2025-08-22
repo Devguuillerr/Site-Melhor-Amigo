@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Petshop Melhor Amigo</title>
+  <link rel="stylesheet" href="src/style.css" />
+  <link rel="stylesheet" href="src/produtos.css">
+  <link rel="icon" href="img/casa.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div id="cart-icon">🛒</div>
+
+  <!-- Carrinho -->
+  <div id="cart">
+    <header>
+      <span>Meu Carrinho</span>
+      <button id="close-cart" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;">✖</button>
+    </header>
+    <div id="cart-items"></div>
+    <footer>
+      <div id="cart-total">Total: R$ 0,00</div>
+      <button id="checkout-btn">Finalizar Compra</button>
+    </footer>
+  </div>
+
+  <!-- Navegação -->
+  <div class="navegacao">
+    <div class="header-inner-content show-menu">
+      <h2 class="logo"><span class="pet">PET</span><span class="amigo">SHOP</span></h2>
+      <nav>
+        <ul>
+          <li><a href="html/produtos.html">Produtos</a></li>
+          <li><a href="html/galeria.html">Galeria</a></li>
+          <li><a href="html/contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header>
+    <div class="header-inner-content">
+      <div class="header-bottom-side">
+        <div class="header-bottom-side-left">
+          <h2>O MELHOR PARA SEU PET, COM CARINHO E QUALIDADE!</h2>
+          <p><strong>Encontre tudo o que seu pet precisa</strong> em um só lugar. Rações, brinquedos, acessórios e muito mais!</p>
+          <a href="html/produtos.html" class="btn">VER PRODUTOS</a>
+        </div>
+        <div class="header-bottom-side-right">
+          <img src="img/pets.png" alt="Pets felizes" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="success-toast">Compra realizada com sucesso! 💚</div>
+
+  <!-- Modal de pagamento -->
+  <div id="payment-modal">
+    <div class="modal-content">
+      <h2>Escolha a forma de pagamento</h2>
+      <div class="payment-options">
+        <button class="payment-option" data-method="Pix">Pix</button>
+        <button class="payment-option" data-method="Cartão de Crédito">Cartão de Crédito</button>
+        <button class="payment-option" data-method="Cartão de Débito">Cartão de Débito</button>
+      </div>
+      <div id="payment-error"></div>
+      <button class="close-btn" id="close-payment-modal">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Destaques -->
+  <section class="destaques">
+    <h2>Ofertas e promoções da semana</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="img/pedrigree.png" alt="Ração Pedigree" />
+        <h3>Ração Pedigree</h3>
+        <p>Alimente com o melhor o seu amigo pet!</p>
+        <p class="price">
+        <span class="old-price">De: R$ 89,99</span>
+        <span class="new-price">Por: R$ 79,99</span></p>
+        <button class="btn add-to-cart" data-name="Ração Pedigree" data-price="69,99" data-img="img/pedrigree.png">Adicionar ao carrinho</button>
+      </div>
+      <div class="card">
+        <img src="img/areia gato.webp" alt="Areia Higiênica" />
+        <h3>Areia Higiênica</h3>
+        <p>Para sua casa e seu gato ficar limpinho!</p>
+        <p class="price">
+        <span class="old-price">De: R$ 49,99</span>
+        <span class="new-price">Por: R$ 39,99</span></p>
+        <button class="btn add-to-cart" data-name="Areia Higiênica" data-price="24,99" data-img="img/areia gato.webp">Adicionar ao carrinho</button>
+      </div>
+      <div class="card">
+        <img src="img/racao gato.webp" alt="Ração de Gato" />
+        <h3>Ração Friskies</h3>
+        <p>Nutrição ideal e de qualidade para seu felino!</p>
+        <p class="price">
+        <span class="old-price">De: R$ 79,99</span>
+        <span class="new-price">Por: R$ 69,99</span></p>
+        <button class="btn add-to-cart" data-name="Ração Friskies" data-price="59,99" data-img="img/racao gato.webp">Adicionar ao carrinho</button>
+      </div>
+      <div class="card">
+        <img src="img/kit shampoo.webp" alt="Kit Shampoo">
+        <h3>Kit Shampoo</h3>
+        <p>O melhor kit shampoo para o seu cachorrinho.</p>
+        <p class="price">
+        <span class="old-price">De: R$ 24,99</span>
+        <span class="new-price">Por: R$ 14,99</span></p>
+        <button class="btn add-to-cart" data-name="Kit shampoo" data-price="29,99" data-img="img/kit shampoo.webp">Adicionar ao carrinho</button>
+      </div>
+            <div class="card">
+        <img src="img/gaiola.webp" alt="Gaiola Passarinho">
+        <h3>Gaiola para pássaro</h3>
+        <p>Espaço confortável para seu pet voador.</p>
+        <p class="price">
+        <span class="old-price">De: R$ 99,99</span>
+        <span class="new-price">Por: R$ 89,99</span></p>
+        <button class="btn add-to-cart" data-name="Gaiola para pássaro" data-price="89,99" data-img="img/gaiola.webp">Adicionar ao carrinho</button>
+      </div>
+            <div class="card">
+        <img src="img/escova.webp" alt="Escova">
+        <h3>Escova para pet</h3>
+        <p>Escove com carinho o seu pet com essa escova!</p>
+        <p class="price">
+        <span class="old-price">De: R$ 19,99</span>
+        <span class="new-price">Por: R$ 14,99</span></p>
+        <button class="btn add-to-cart" data-name="Escova" data-price="14,99" data-img="img/escova.webp">Adicionar ao carrinho</button>
+      </div>
+            <div class="card">
+        <img src="img/brinquedo.webp" alt="Brinquedo Interativo">
+        <h3>Brinquedo Interativo</h3>
+        <p>Divirta seu amigo pet com esse brinquedo!</p>
+        <p class="price">
+        <span class="old-price">De: R$ 69,99</span>
+        <span class="new-price">Por: R$ 49,99</span></p>
+        <button class="btn add-to-cart" data-name="Brinquedo Interativo" data-price="49,99" data-img="img/brinquedo.webp">Adicionar ao carrinho</button>
+      </div>
+            <div class="card">
+        <img src="img/biscoito.jpg" alt="Biscoito Cachorro">
+        <h3>Biscoito Cachorro</h3>
+        <p>Alimente seu dog com esse biscoito delicioso!</p>
+        <p class="price">
+        <span class="old-price">De: R$ 19,99</span>
+        <span class="new-price">Por: R$ 14,99</span></p>
+        <button class="btn add-to-cart" data-name="Biscoito Cachorro" data-price="14,99" data-img="img/biscoito.jpg">Adicionar ao carrinho</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+const cartIcon = document.getElementById("cart-icon");
+const cart = document.getElementById("cart");
+const closeCart = document.getElementById("close-cart");
+const cartItemsEl = document.getElementById("cart-items");
+const cartTotalEl = document.getElementById("cart-total");
+const checkoutBtn = document.getElementById("checkout-btn");
+const paymentModal = document.getElementById("payment-modal");
+const paymentError = document.getElementById("payment-error");
+const successToast = document.getElementById("success-toast");
+
+let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cartData));
+}
+
+function updateCartDisplay() {
+  cartItemsEl.innerHTML = "";
+  let total = 0;
+  cartData.forEach((item, index) => {
+    total += item.price * item.qty;
+    cartItemsEl.innerHTML += `
+      <div class="cart-item">
+        <img src="${item.img}" alt="${item.name}" />
+        <div class="cart-item-info">
+          <h4>${item.name}</h4>
+          <p>R$ ${item.price.toFixed(2)}</p>
+          <div class="cart-item-qty">
+            <button onclick="changeQty(${index}, -1)">-</button>
+            ${item.qty}
+            <button onclick="changeQty(${index}, 1)">+</button>
+            <button onclick="removeItem(${index})" style="background:red;">🗑</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+  cartTotalEl.textContent = `Total: R$ ${total.toFixed(2)}`;
+}
+
+function changeQty(index, change) {
+  cartData[index].qty += change;
+  if (cartData[index].qty <= 0) {
+    cartData.splice(index, 1);
+  }
+  saveCart();
+  updateCartDisplay();
+}
+
+function removeItem(index) {
+  cartData.splice(index, 1);
+  saveCart();
+  updateCartDisplay();
+}
+
+document.querySelectorAll(".add-to-cart").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const name = btn.dataset.name;
+    const price = parseFloat(btn.dataset.price);
+    let img = btn.dataset.img || "";
+
+
+    const existing = cartData.find((item) => item.name === name);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cartData.push({ name, price, img, qty: 1 });
+    }
+    saveCart();
+    updateCartDisplay();
+
+    cart.classList.add("open");
+    cartIcon.style.display = "none";  
+  });
+});
+
+cartIcon.addEventListener("click", () => {
+  cart.classList.add("open");
+  cartIcon.style.display = "none";  
+  updateCartDisplay();
+});
+
+closeCart.addEventListener("click", () => {
+  cart.classList.remove("open");
+  cartIcon.style.display = "block"; 
+});
+
+checkoutBtn.addEventListener("click", () => {
+  if (cartData.length === 0) {
+    alert(
+      "⚠️ Você precisa adicionar pelo menos um item ao carrinho antes de finalizar a compra."
+    );
+    return;
+  }
+  paymentError.textContent = "";
+  paymentModal.style.display = "flex";
+});
+
+// Fechar modal pagamento
+paymentModal.querySelector(".close-btn").addEventListener("click", () => {
+  paymentModal.style.display = "none";
+});
+
+// Escolha forma de pagamento
+paymentModal.querySelectorAll(".payment-option").forEach((button) => {
+  button.addEventListener("click", () => {
+    const method = button.dataset.method;
+    if (!method) {
+      paymentError.textContent = "Forma de pagamento inválida.";
+      return;
+    }
+    // Simula pagamento aprovado
+    paymentModal.style.display = "none";
+    showSuccessScreen();
+
+    cartData = [];
+    saveCart();
+    updateCartDisplay();
+    cart.classList.remove("open");
+    cartIcon.style.display = "block";
+  });
+});
+
+function showSuccessScreen() {
+  successToast.style.display = "block";
+  setTimeout(() => {
+    successToast.style.opacity = "1";
+  }, 10);
+
+  setTimeout(() => {
+    successToast.style.opacity = "0";
+    setTimeout(() => {
+      successToast.style.display = "none";
+    }, 500);
+  }, 3000);
+}
+
+updateCartDisplay();
+window.onload = () => {
+  paymentModal.style.display = "none";
+  cartIcon.style.display = "block";
+};
+</script>
+
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Petshop Melhor Amigo. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

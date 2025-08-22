@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contato - Petshop Melhor Amigo</title>
+  <link rel="stylesheet" href="../src/style.css">
+  <link rel="stylesheet" href="../src/contato.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="navegacao">
+    <div class="header-inner-content show-menu">
+      <h2 class="logo"><span class="pet">PET</span><span class="amigo">SHOP</span></h2>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="galeria.html">Galeria</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <main class="contato-container">
+    <h2>Fale Conosco</h2>
+
+    <div class="mensagem-sucesso" id="msg-sucesso" style="display:none;">
+      Mensagem enviada com sucesso! ✅
+    </div>
+
+    <form id="form-contato" novalidate>
+      <div class="form-control">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" required>
+        <small class="erro-msg" style="display:none;"></small> 
+      </div>
+
+      <div class="form-control">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" required>
+        <small class="erro-msg" style="display:none;"></small>
+      </div>
+
+      <div class="form-control">
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" name="telefone" placeholder="Ex: (81) 9999-9999" maxlength="15">
+        <small class="erro-msg" style="display:none;"></small> 
+      </div>
+
+      <div class="form-control">
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+        <small class="erro-msg" style="display:none;"></small> 
+      </div>
+
+      <label class="checkbox-label">
+        <span>Desejo receber novidades por e-mail</span>
+        <input type="checkbox" name="newsletter">
+      </label>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <div class="info-contato">
+      <p>📍 Rua dos Pets Felizes, 123 - Centro</p>
+      <p>📞 (11) 99999-9999</p>
+      <p>📧 contato@melhoramigo.com</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Petshop Melhor Amigo. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+  <script src="../src/script.js"></script>
+</body>
+</html>
